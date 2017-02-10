@@ -3,12 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 
-import ElementUI from 'element-ui' 
+import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+
+import CustomUI from './custom-ui/index'
 
 import router from './router'
 
 Vue.use(ElementUI)
+Vue.use(CustomUI)
 
 /* eslint-disable no-new */
 new Vue({
