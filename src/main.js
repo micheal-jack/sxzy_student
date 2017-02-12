@@ -10,8 +10,12 @@ import CustomUI from './custom-ui/index'
 
 import router from './router'
 
+
+
+
 Vue.use(ElementUI)
 Vue.use(CustomUI)
+
 
 /* eslint-disable no-new */
 new Vue({

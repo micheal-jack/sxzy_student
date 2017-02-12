@@ -1,24 +1,25 @@
 <template>
 <div class="course-page">
-	<cui-navbar v-on:back="back" :title="title"></cui-navbar>
-	<a v-on:click="showCategoryList" class="menu-button">
+	<cui-navbar v-on:back="back" :title="title">
+	<a v-on:click="showCategoryList" class="menu-button" slot="right">
 		 <i class="el-icon-menu large"></i>
-	</a>
-<!-- <ul>
-	<li v-for="item in course_list">
-		<router-link :to="{ name: 'CourseDetailCatelog', params:{id:item.course_id} }">{{item.course_id}} - {{item.course_title}}</router-link>
-	</li>
-</ul> -->
-	<div class="content">
-			<div v-for="item in course_list" class="item">
-
+	</a>	
+	</cui-navbar>
+	<scroller  style="top:65px;"
+              :on-refresh="refresh"
+              :on-infinite="infinite"
+              ref="my_scroller">
+<el-row class="content">
+			
+			<el-col :span="12" v-for="item in course_list">
+			<div  class="item">
 				<div class="item-top">
 					<div class="elem avatar-group">
 						<img class="avatar" width="60" height="60" src="static/img/avatar-finn.png" alt="">
 						<p>张老师</p>
 					</div>
 					<div class="elem content-group">
-						<p class="title">三年级语文(上)</p>
+						<router-link :to="{name:'CourseDetail',params:{id:item.course_id}}" class="title"><p>{{item.course_title}}</p></router-link>
 						<p class="description">请同学们预约课前导学及相关学习资源中的文件，上课前提问。请同学们做好准备，
 							做好课前复习。请同学们预约课前导学及相关学习资源中的文件，上课前提问。
 						</p>
@@ -26,47 +27,85 @@
 				</div>
 				<div class="line"></div>
 				<div class="item-bottom">
-					 <a class="item-btn btn-tag"><i class="el-icon-star-on"></i></a>
+					 <a class="item-btn btn-tag"><i class="el-icon-star-off"></i></a>
 					 <a class="item-btn btn-question"><i class="el-icon-warning"></i></a>
 					 <router-link class="item-btn btn-router" :to="{ name: 'CourseDetailCatelog', params:{id:item.course_id} }">
 					 		<button class="right" type="button" name="button">继续学习</button>
 					 </router-link>
 				</div>
 			</div>
+			</el-col>
+			
 	</div>
+</el-row>
+</scroller>
 </div>
 </template>
 
 <script>
-
-	var data = {
-		title:'我的课程',
-		course_list:[
-			{course_id:1,course_title:'一年级语文（上）'},
-			{course_id:2,course_title:'一年级数学（上）'},
-			{course_id:3,course_title:'一年级英语（上）'},
-			{course_id:4,course_title:'一年级自然（上）'},
-			{course_id:5,course_title:'一年级美术（上）'},
-		]
-	}
-
+  	import Scroller from "vue-scroller/src/components/Scroller.vue"
 	export default {
 	  name: 'my_course',
-	  data () {
-	    return data
+	  components: {
+	  	Scroller
 	  },
-		methods: {
-			back: function (evt) {
+	  mounted() {
+    	for (var i = 1; i <= 6; i++) {
+        	this.course_list.push({course_id:i,course_title:'课程 '+i})
+    	 }
+  	  },
+	  methods: {
+	      refresh() {
+	      	console.log('refresh')
+	        setTimeout(() => {
+	          var start = 1
+	          var l = [];
+	          for (var i = start; i <7; i++) {
+	          	l.push({course_id:i,course_title:'课程New '+i})
+	            // this.course_list.splice(0, 0, {course_id:i,course_title:'课程New '+i});
+	          }
+	          this.course_list = l
+	          if (this.$refs.my_scroller)
+	            this.$refs.my_scroller.finishPullToRefresh();
+	        }, 1000)
+	      },
+	      infinite() {
+	      	console.log('加载更多')
+	        setTimeout(() => {
+		          var start = this.course_list.length+1;
+		          console.log(start)
+		          if(start>=20){
+		          	this.$refs.my_scroller.finishInfinite(true);
+		          	return
+		          }
+		          for (var i = start; i < start + 7; i++) {
+		            this.course_list.push({course_id:i,course_title:'课程 '+i});
+		          }
+		          setTimeout(()=>{
+		           this.$refs.my_scroller.finishInfinite();
+		          })
+	        }, 1000)
+	      },
+	      back: function (evt) {
 				console.log("back btn click");
 			},
 			showCategoryList: function (evt) {
 				console.log("show category list");
 			}
-		}
+	 	},
+	  data () {
+	    return {
+	    	title:'我的课程',
+			course_list:[]
+	    }
+	  }
 	}
 </script>
 
 <style scoped>
+	.el-col{
+		padding: 10px 10px;
+	}
 	.course-page{
 		margin: 0 0;
 		overflow: hidden;
@@ -74,11 +113,7 @@
 		/*background-color: #333;*/
 	}
 	.menu-button{
-		width: 45px;
-		height: 45px;
-		position: absolute;
-		top: 25px;
-		right: 20px;
+		display: block;
 		cursor: pointer;
 	}
 
@@ -115,42 +150,34 @@
 	}
 
 	.content {
-		position: absolute;
-		/*background-color: #ff0000;*/
-		margin: 0 0 0 0;
-		top: 84px;
-		width: 100%;
-	  max-height: 595px;
-		overflow-x: hidden;
-		overflow-y: auto;
-		padding: 60px 32px 0px 32px;
+		padding: 0px 20px;
 	}
 
-	.content > div.item {
+	.content  div.item {
 		display: inline-block;
-		width: 470px;
+		/*width: 470px;*/
 		height: 258px;
 		opacity: 0.95;
 		background: #ffffff;
 		box-shadow: 0 1px 1px 0 rgba(212,212,212,0.50);
 		border-radius: 12px;
 		text-align: center;
-		margin: 15px 15px 15px 0;
+		/*margin: 15px 15px 15px 0;*/
 	}
 
-	.content > div.item > div.item-top {
+	.content  div.item > div.item-top {
 		display: -webkit-flex;
   	display: flex;
 	}
 
-	.content > div.item > div.item-top > .elem {
+	.content  div.item > div.item-top > .elem {
 		flex: 1;
 		-webkit-flex: 1;
 	}
 /**
  * content > top > avatar-group
  */
-	.content > div.item > div.item-top > .avatar-group {
+	.content  div.item > div.item-top > .avatar-group {
 		width: 120px;
 		flex: none;
 		-webkit-flex: none;
@@ -173,29 +200,31 @@
 	 * content > top > content-group
 	 */
 
-	.item > div.item-top > div.content-group {
+	.item  div.item-top > div.content-group {
 		text-align: left;
 		margin-top: 18px;
 		margin-right: 25px;
 	}
 
-	.item > div.item-top > div.content-group > .title {
+	.item  div.item-top > div.content-group > .title {
 		font-size: 16px;
 		color: #333333;
 		margin-left: 0;
 		padding-left: 0;
 		text-align: left;
 	}
-	.item > div.item-top > div.content-group > .description {
+	.item  div.item-top > div.content-group > .description {
 		font-size: 14px;
 		color: #666666;
 		line-height: 25px;
 		text-align: left;
+		    height: 95px;
+    overflow: hidden;
 	}
 /**
  * middle line
  */
-	.content > div.item > div.line {
+	.content  div.item > div.line {
 		background-color: #EDEDED;
 		margin: 6px 20px 10px 20px;
 		height: 1px;
@@ -203,15 +232,15 @@
 	/**
 	 * bottom
 	 */
-	 .content > div.item > div.item-bottom {
+	 .content  div.item > div.item-bottom {
 		 height: 68px;
 	 }
 
-	 .content > div.item > div.item-bottom > * {
+	 .content  div.item > div.item-bottom > * {
 		 display: block;
 	 }
 
-	.content > div.item > div.item-bottom > a > button {
+	.content  div.item > div.item-bottom > a > button {
 		width: 136px;
 		height: 36px;
 	  border: none;

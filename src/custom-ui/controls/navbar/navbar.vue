@@ -1,9 +1,10 @@
 <template>
   <nav>
       <div class="title">{{title}}</div>
-      <a v-on:click="handleClick" class="back-button">
-         <i class="el-icon-arrow-left large"></i>
-      </a>
+      <a v-on:click="handleClick" class="back-button"><i class="el-icon-arrow-left large"></i></a>
+      <div class="nav-right">
+      <slot name="right"></slot>
+      </div>
   </nav>
 </template>
 
@@ -26,22 +27,28 @@
 <style scoped>
   nav {
     position: fixed;
-    height: 84px;
-    width: 100%;
+    height: 35px;
+    padding: 10px 15px;
+    z-index: 1000;
     left: 0;
-    top: 0;
+    right: 0;
+    top: 0px;
     background-color: #fff;
-    -webkit-box-shadow: 0px 1px 1px 0px rgba(184,184,184,0.8);
-    -moz-box-shadow: 0px 1px 1px 0px rgba(184,184,184,0.8);
     box-shadow: 0px 1px 1px 0px rgba(184,184,184,0.8);
+  }
+  .nav-right{
+    position: absolute;
+    right: 10px;
+    top: 10px;
   }
 
   .back-button{
+    display: inline-block;
     width: 40px;
     height: 40px;
-    left: 20px;
-    top: 29px;
-    position: relative;
+    left: 15px;
+    top: 10px;
+    position: absolute;
   }
 
   .large {
@@ -56,12 +63,9 @@
 
   nav > div.title{
     font-size: 24px;
-    font-family: 黑体,sans-serif;
-    position: absolute;
     text-align: center;
-    top: 33px;
-    left: 60px;
-    right: 60px;
+    padding-left: 60px;
+    padding-right: 100px;
   }
 
 

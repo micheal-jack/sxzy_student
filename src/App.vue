@@ -14,9 +14,6 @@ export default {
 <style>
   html,body,#app {
     margin: 0 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: 黑体;
   }
 
   .app-bg {
