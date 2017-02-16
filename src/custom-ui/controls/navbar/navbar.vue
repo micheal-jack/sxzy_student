@@ -1,9 +1,11 @@
 <template>
   <nav>
-      <div class="title">{{title}}</div>
-      <a v-on:click="handleClick" class="back-button"><i class="el-icon-arrow-left large"></i></a>
-      <div class="nav-right">
-      <slot name="right"></slot>
+      <div>
+        <a v-on:click="handleClick" class="back-button"><i class="el-icon-arrow-left large"></i></a>
+        <p class="title">{{title}}</p>
+        <div class="nav-right">
+          <slot name="right"></slot>
+        </div>
       </div>
   </nav>
 </template>
@@ -27,28 +29,32 @@
 <style scoped>
   nav {
     position: fixed;
-    height: 35px;
-    padding: 10px 15px;
+    height: 84px;
+    width: 100%;
     z-index: 1000;
     left: 0;
     right: 0;
     top: 0px;
-    background-color: #fff;
-    box-shadow: 0px 1px 1px 0px rgba(184,184,184,0.8);
+    opacity: 0.9;
+    background: #FFFFFF;
+    box-shadow: 0 1px 1px 0 rgba(184,184,184,0.50);
   }
-  .nav-right{
-    position: absolute;
-    right: 10px;
-    top: 10px;
+  nav > div {
+    display: flex;
+    display: -webkit-flex;
+    height: 100%;
+    vertical-align: middle;
   }
 
   .back-button{
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    left: 15px;
-    top: 10px;
-    position: absolute;
+    width: 60px;
+    margin: 20px 20px 10px 20px;
+  }
+
+  .nav-right {
+    width: 60px;
+    height: 100%;
+    margin: 20px 20px 10px 20px;
   }
 
   .large {
@@ -61,12 +67,12 @@
     filter: alpha(opacity=0.9);
   }
 
-  nav > div.title{
+  .title{
+    flex: 1;
+    -webkit-flex: 1;
     font-size: 24px;
+    color: #000000;
     text-align: center;
-    padding-left: 60px;
-    padding-right: 100px;
   }
-
 
 </style>
