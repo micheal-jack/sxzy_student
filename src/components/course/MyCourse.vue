@@ -3,14 +3,14 @@
 	<cui-navbar v-on:back="back" :title="title">
 	<a v-on:click="showCategoryList" class="menu-button" slot="right">
 		 <i class="el-icon-menu large"></i>
-	</a>	
+	</a>
 	</cui-navbar>
 	<scroller  style="top:65px;"
               :on-refresh="refresh"
               :on-infinite="infinite"
               ref="my_scroller">
 <el-row class="content">
-			
+
 			<el-col :span="12" v-for="item in course_list">
 			<div  class="item">
 				<div class="item-top">
@@ -35,7 +35,7 @@
 				</div>
 			</div>
 			</el-col>
-			
+
 	</div>
 </el-row>
 </scroller>
