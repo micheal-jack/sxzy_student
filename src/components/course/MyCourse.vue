@@ -5,7 +5,7 @@
                 <i class="el-icon-menu large"></i>
             </a>
         </cui-navbar>
-        <scroller style="top:65px;" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">
+        <scroller style="top:90px;" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">
             <el-select v-model="value" placeholder="请选择" class="term-list">
                 <el-option v-for="item in options" :label="item.label" :value="item.value">
                 </el-option>
@@ -130,7 +130,7 @@ export default {
     border: none;
     border-radius: 30px;
     padding: 20px 0px;
-    text-align: center;
+    text-indent: 45px;
 }
 </style>
 <style scoped>
@@ -173,12 +173,12 @@ export default {
     width: 36px;
     height: 36px;
     display: block;
-    background: url(/static/img/note.png);
+    background: url(/static/img/assets/course/note.png);
     background-size: 100%;
 }
 
 .icon-question {
-    background: url(/static/img/question.png);
+    background: url(/static/img/assets/course/question.png);
 }
 
 .btn-router {

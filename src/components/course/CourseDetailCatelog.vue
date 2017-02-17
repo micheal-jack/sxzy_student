@@ -1,5 +1,6 @@
 <template>
     <div class="catalog">
+        <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick"></el-tree>
     </div>
 </template>
 <script>
@@ -8,17 +9,58 @@ export default {
     data() {
         console.log(this.$route.params.id)
         return {
-            title: '课程详情页-目录'
+            title: '课程详情页-目录',
+
+            data: [{
+                label: '一级 1',
+                children: [{
+                    label: '二级 1-1',
+                    children: [{
+                        label: '三级 1-1-1'
+                    }]
+                }]
+            }, {
+                label: '一级 2',
+                children: [{
+                    label: '二级 2-1',
+                    children: [{
+                        label: '三级 2-1-1'
+                    }]
+                }, {
+                    label: '二级 2-2',
+                    children: [{
+                        label: '三级 2-2-1'
+                    }]
+                }]
+            }, {
+                label: '一级 3',
+                children: [{
+                    label: '二级 3-1',
+                    children: [{
+                        label: '三级 3-1-1'
+                    }]
+                }, {
+                    label: '二级 3-2',
+                    children: [{
+                        label: '三级 3-2-1'
+                    }]
+                }]
+            }],
+            defaultProps: {
+                children: 'children',
+                label: 'label'
+            },
+            methods: {
+                handleNodeClick(data) {
+                    console.log(data);
+                }
+            }
         }
     }
 }
 </script>
 <style scoped>
 .catalog {
-    width: 35%;
-    height: auto;
-    position: fixed;
-    top: 0;
-    right: 0;
+    width: 100%;
 }
 </style>
