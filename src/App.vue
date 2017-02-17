@@ -21,7 +21,7 @@ export default {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-image: url('/static/img/bg.jpg');
+    background-image: url('/static/img/bg.png');
     background-repeat: no-repeat;
     background-size: cover;
     -webkit-filter: blur(5px);
