@@ -6,7 +6,7 @@
       <p class="tag">老师</p>
       <hr class="line" />
       <div class="item-wrapper">
-        <div class="avatar-group" v-for="tea in teachers" >
+        <div class="avatar-group" v-for="tea in teachers" @click="open(tea)" >
           <img :src="tea.avatar">
           <p class="item-name">{{tea.name}}</p>
           <div class="item-title">{{tea.title}}</div>
@@ -16,10 +16,24 @@
       <p class="tag classmate">同学</p>
       <hr />
       <div class="item-wrapper">
-        <div class="avatar-group" v-for="classmate in classmates" >
+        <div class="avatar-group" v-for="classmate in classmates" @click="open(classmate)">
           <img :src="classmate.avatar">
           <p class="item-name">{{classmate.name}}</p>
         </div>
+      </div>
+    </div>
+
+    <div class="modal-wrapper" v-if="showModal">
+      <div class="modal-container">
+         <div class="modal-btn-close">
+           <a @click="close"><img src="static/img/assets/classmembers/close2.png" /></a>
+           <div class="line"></div>
+        </div>
+        <div class="avatar" >
+            <img width="100%" height="100%" :src="selectedUser.avatar" />
+        </div>
+        <p>{{selectedUser.name}}</p>
+        <el-button class="btn-send">发送消息</el-button>
       </div>
     </div>
   </div>
@@ -37,7 +51,7 @@ const teachers = [
   },
   {
     avatar: "static/img/avatar-finn.png",
-    name: "张老师",
+    name: "王老师",
     title: ""
   },
   {
@@ -148,6 +162,11 @@ export default {
   data () {
     return {
     	title:'班级成员',
+      showModal: false,
+      selectedUser: {
+        avatar: "static/img/avatar-finn.png",
+        name: "张同学"
+      },
       classmates: classmates,
       teachers: teachers
     }
@@ -157,6 +176,13 @@ export default {
       console.log("params ..." + this.$route.params);
       var router = new Router();
       router.go(-1);
+    },
+    open: function (u) {
+       this.selectedUser = u;
+       this.showModal = true;
+    },
+    close: function () {
+      this.showModal = false;
     }
   }
 }
@@ -226,6 +252,83 @@ p.tag {
   font-size: 10px;
   color: #999999;
   margin-top: 3px;
+}
+
+.modal-wrapper {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.modal-wrapper:after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 323px;
+  height: 320px;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: left;
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+}
+
+.modal-btn-close {
+  border: none;
+  background: none;
+  margin-top: -50px;
+  float: right;
+}
+
+.modal-btn-close > div.line {
+  /*border: 1px solid #FFFFFF;*/
+  margin: 0 0;
+  border-left: 1px solid #fff;
+  height: 30px;
+  margin-left: 15px;
+  margin-top: -5px;
+  background: none;
+}
+
+.modal-container > div.avatar {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.modal-container > div.avatar > img {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.modal-container > p {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333333;
+}
+
+.modal-container > .btn-send {
+    width: 229px;
+    height: 48px;
+    background: #36B991;
+    border-radius: 100px;
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-top: 34px;
 }
 
 </style>
