@@ -1,9 +1,9 @@
 <template>
 <div class="msg-page">
   <cui-navbar v-on:back="back" :title="title">
-    <a v-on:click="presentContacters" class="menu-button" slot="right">
-      <i class="el-icon-menu large"></i>
-    </a>
+    <router-link class="menu-button" slot="right" :to="{ path: 'myclass/member' }">
+      <img src="static/img/assets/msg/list.png" />
+    </router-link>
   </cui-navbar>
   <el-row class="content">
     <el-col class="msg-list" :span="10">
@@ -60,7 +60,7 @@ const session_list = [{
     username: "zhang",
     avatar: "static/img/avatar-finn.png"
   },
-  unread: 12,
+  unread: 0,
   time: "上午10:53",
   lastMessage: "晚安...."
 }, {
