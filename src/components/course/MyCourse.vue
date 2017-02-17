@@ -126,7 +126,7 @@ export default {
 }
 </script>
 <style>
-.term-list .el-input__inner{
+.term-list .el-input__inner {
     border: none;
     border-radius: 30px;
     padding: 20px 0px;
@@ -149,11 +149,12 @@ export default {
     display: block;
     cursor: pointer;
 }
-.el-select{
+
+.el-select {
     float: right;
     margin-right: 30px;
-
 }
+
 .large {
     font-size: 36px;
     color: rgba(102, 102, 102, 0.5);
@@ -166,16 +167,18 @@ export default {
     float: left;
     margin: 10px 15px 16px 32px;
 }
+
 .icon-note,
 .icon-question {
-	width: 36px;
-	height: 36px;
-	display: block;
-	background:url(/static/img/note.png);
-	background-size: 100%;
+    width: 36px;
+    height: 36px;
+    display: block;
+    background: url(/static/img/note.png);
+    background-size: 100%;
 }
+
 .icon-question {
-	background:url(/static/img/question.png);
+    background: url(/static/img/question.png);
 }
 
 .btn-router {
@@ -200,7 +203,7 @@ export default {
 .content {
     padding: 0px 20px;
     overflow: hidden;
-    clear:both;
+    clear: both;
 }
 
 .content div.item {
@@ -268,7 +271,6 @@ export default {
     text-align: left;
     text-decoration: none;
 }
-
 
 .item div.item-top > div.content-group > .description {
     font-size: 14px;

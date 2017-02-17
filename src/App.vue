@@ -12,8 +12,19 @@ export default {
 </script>
 
 <style>
-  html,body,#app {
+  html {
+    font-family: Microsoft YaHei;
+  }
+
+  html,body,div {
     margin: 0 0;
+  }
+  html,body,#app {
+    height: 100%;
+  }
+
+  #app {
+    min-height: 100%;
   }
 
   .app-bg {
