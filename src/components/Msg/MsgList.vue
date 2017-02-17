@@ -8,10 +8,7 @@
   <el-row class="content">
     <el-col class="msg-list" :span="10">
       <!-- left scroll list -->
-      <scroller :on-refresh="refresh"
-                :on-infinite="infinite"
-                ref="my_scroller"
-                style="padding-bottom: 50px; width: 380px;" >
+      <scroller :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller" style="width: 380px;padding-bottom: 50px;">
         <div class="avatar-list-item" v-for="session in session_list">
           <div class="cui-row">
             <div class="cui-col avatar-col">
@@ -29,13 +26,25 @@
     </el-col>
     <el-col class="chat-window" :span="14">
       <div class="chat-content">
+        <ol class="content-list">
+          <li>
+             <img class="msg-avatar" src="static/img/avatar-finn.png" draggable="false"/>
+             <div class="msg me">我昨天的作业成绩优</div>
+             <div class="space"></div>
+          </li>
+          <li>
+             <div class="space"></div>
+             <div class="msg them">我昨天的作业成绩优</div>
+             <img class="msg-avatar" src="static/img/avatar-finn.png" draggable="false"/>
+          </li>
+        </ol>
       </div>
       <div class="bottom-bar">
         <div class="bar-wrapper">
-          <input class="textarea" type="text" placeholder="输入内容"/>
+          <input class="textarea" type="text" placeholder="输入内容" />
           <div class="camera"></div>
-          <el-button  class="enter" type="success">发送</el-button>
         </div>
+        <el-button class="enter" type="success">发送</el-button>
       </div>
     </el-col>
   </el-row>
@@ -126,7 +135,7 @@ const session_list = [{
   unread: 12,
   time: "上午10:53",
   lastMessage: "为了确保你的问题可以得到有效的..."
-},{
+}, {
   user: {
     name: "张学生",
     username: "zhang",
@@ -135,7 +144,7 @@ const session_list = [{
   unread: 12,
   time: "上午10:53",
   lastMessage: "为了确保你的问题可以得到有效的..."
-},{
+}, {
   user: {
     name: "张学生",
     username: "zhang",
@@ -144,7 +153,7 @@ const session_list = [{
   unread: 12,
   time: "上午10:53",
   lastMessage: "为了确保你的问题可以得到有效的..."
-},{
+}, {
   user: {
     name: "张学生",
     username: "zhang",
@@ -183,7 +192,7 @@ export default {
       setTimeout(() => {
         let start = this.top - 1
         for (let i = start; i > start - 10; i--) {
-          this.session_list.splice(0, 0, i + ' - keep walking, be 2 with you.')
+          // this.session_list.splice(0, 0, i + ' - keep walking, be 2 with you.')
         }
         this.top = this.top - 10;
 
@@ -202,7 +211,7 @@ export default {
       setTimeout(() => {
         let start = this.bottom + 1
         for (let i = start; i < start + 10; i++) {
-          this.session_list.push(i + ' - keep walking, be 2 with you.')
+          // this.session_list.push(i + ' - keep walking, be 2 with you.')
         }
         this.bottom = this.bottom + 10;
         setTimeout(() => {
@@ -215,17 +224,22 @@ export default {
 </script>
 
 <style scoped>
+
+.app-bg {
+  background-image: none;
+}
+
 .msg-page>nav {
   opacity: 0.9;
-  background: #ffffff;
+  /*background: #ffffff;*/
   box-shadow: 0 1px 1px 0 rgba(184, 184, 184, 0.50);
 }
 
 .content {
-  background: #ffffff;
-  margin: 84px 0 0 0;
+  /*background: #ffffff;*/
+  margin: 85px 0 0 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   display: -webkit-flex;
 }
@@ -237,12 +251,18 @@ export default {
   background: #FFFFFF;
 }
 
+._v-container {
+  opacity: 0.85;
+  background: #FFFFFF;
+}
+
 .chat-window {
   flex: 1;
   -webkit-flex: 1;
   opacity: 0.78;
   background: #FFFFFF;
   box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 0.20);
+  margin-bottom: -50px;
 }
 
 .avatar-list-item {
@@ -302,9 +322,9 @@ export default {
   color: #9B9B9B;
   letter-spacing: 0;
   margin-top: 4px;
-  overflow:hidden;
-  white-space:nowrap;
-  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .chat-content {
@@ -312,68 +332,135 @@ export default {
   height: 100vh;
 }
 
-.bottom-bar {
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  margin-left: 1px;
+.content-list {
+  list-style: none;
+  background: none;
+  margin: 0 0;
 }
 
-.bar-wrapper {
-	display: flex;
+.content-list > li {
+  padding: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  display: -webkit-flex;
+}
+
+.content-list > li > img {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 100%;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.content-list > li > div.space {
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+.content-list > li > div.me {
+  background: #F0F0F0;
+  border-radius: 44px 44px 44px 4px;
+  padding: 26px 26px 26px 26px;
+  margin-left: 20px;
+  font-size: 16px;
+  color: #4A4A4A;
+  letter-spacing: 0;
+  line-height: 16px;
+}
+
+.content-list > li > div.them {
+  float: right;
+  opacity: 0.8;
+  background: #36B991;
+  border-radius: 44px 44px 4px 44px;
+  padding: 26px 26px 26px 26px;
+  margin-right: 20px;
+  font-size: 16px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+.bottom-bar {
+  margin: 0 0;
+  padding: 0 0;
+  position: fixed;
+  bottom: 6px;
+  width: inherit;
+  margin-left: 2px;
+  display: flex;
 	display: -webkit-flex;
 	align-items: center;
 	flex-wrap: nowrap;
 }
 
-.input-group {
-	flex: 1;
+.bar-wrapper {
+  /*display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	flex-wrap: nowrap;
+  margin-left: 2px;*/
+  flex: 1;
+  -webkit-flex: 1;
 }
 
 input.textarea {
-	width: 92%;
-	height: 50px;
-	right: 0;
-	background: #333;
-	border: none;
-	outline: none;
-	margin-left: 25px;
-	color: #666;
-	font-weight: 400;
-	background: #FFFFFF;
-	border-radius: 4px;
-	padding-left: 45px;
-	font-size: 16px;
-  }
+  width: 100%;
+  height: 34px;
+  background: #333;
+  border: none;
+  outline: none;
+  margin-left: 25px;
+  color: #666;
+  font-weight: 400;
+  background: #FFFFFF;
+  border-radius: 4px;
+  padding-left: 25px;
+  font-size: 16px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  display: inline-block;
+}
 
-  .camera {
-	position: absolute;
-	top: 0px;
-    background-image: url("http://i.imgur.com/5WUpcPZ.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 100;
-    cursor: pointer;
-    width: 34px;
-    height: 34px;
-    margin-top: 10px;
-    margin-left: 30px;
-  }
+.camera {
+  position: absolute;
+  top: 0px;
+  background-image: url("/static/img/assets/msg/camera.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 100;
+  cursor: pointer;
+  width: 24px;
+  height: 18px;
+  margin: 6px 6px 3px 10px;
+}
 
-  .camera:active {
-    opacity: 0.9;
-  }
+.camera:active {
+  opacity: 0.9;
+}
 
-  .enter {
-    width: 56px;
-    height: 34px;
-    cursor: pointer;
-    background: #36B991;
-    border-radius: 4px;
-	border: none;
-	color: aliceblue;
-  }
-
-
-
+.enter {
+  width: 56px;
+  height: 34px;
+  margin-left: 40px;
+  margin-right: -36px;
+  cursor: pointer;
+  background: #36B991;
+  border-radius: 4px;
+  border: none;
+  font-size: 14px;
+  color: #FFFFFF;
+  letter-spacing: 0.52px;
+  flex: none;
+  -webkit-flex: none;
+}
 </style>
