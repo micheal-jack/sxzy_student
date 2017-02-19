@@ -1,6 +1,6 @@
 <template>
 <div class="login-page">
-  <div id="centerBg" class="centerBg">
+  <div id="centerBg" class="centerBg" >
     <div class="login-title">
       <span>
       {{title}}
@@ -20,7 +20,7 @@
         <img id="pwd_text_del_img" src="static/img/assets/login/input_del.png" @click="delText('pwd_text_del_img')" />
       </div>
     <div class="login_button">
-      <button class="right" type="button" name="button">登录</button>
+      <button class="right" type="button" name="button" disabled="false" @click="doLogin">登录</button>
     </div>
     <div class="login_setting">
       <router-link :to="{ path: 'Login' }" class="setting_server" style="margin-left:117px;margin-right:32px;">设置服务器</router-link>
@@ -28,7 +28,17 @@
       <router-link :to="{ path: 'login/reset_passwd' }" class="setting_server" style="margin-left:32px;margin-right:117px;">忘记密码?</router-link>
     </div>
   </div>
+
+  <div id="set_server_div" class="set_div" style="display:none;">
+    <div class="set_center_div">
+        <div class="login-title" ><span>设置服务器</span></div>
+        <div class="login_input"><input id="server_input" placeholder="服务器地址" type="text" @input="checkText('server_input')"></div></div>
+        <div class="del_text_div" id="server_text_del_div">
+          <img id="server_text_del_img"  src="static/img/assets/login/input_del.png" @click="delText('server_text_del_img')"/>
+        </div>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -39,6 +49,12 @@ export default {
     }
   },
   methods: {
+    doLogin(event){
+      var accont=document.getElementById("account_input").value;
+      var pwd=document.getElementById("pwd_input").value;
+      // 校验输入
+      // 提交服务器
+    },
     checkText(id)
     {
         // console.log('input text is change')
@@ -55,6 +71,10 @@ export default {
           }else if(id=="pwd_input")
           {
             opInput=document.getElementById("pwd_text_del_div");
+          }else if(id=="server_input")
+          {
+            opInput=document.getElementById("server_text_del_div");
+            console.log(opInput);
           }
           if(rStr.length>0)
           {
@@ -62,6 +82,7 @@ export default {
           }else  {
             opInput.style.opacity=0
           }
+        // check
     },
     delText(id)
     {
@@ -78,6 +99,10 @@ export default {
       {
         opInput=  document.getElementById('pwd_input');
         delDiv=document.getElementById('pwd_text_del_div');
+      }else if(delType=="server_text_del_img")
+      {
+        opInput=  document.getElementById('server_input');
+        delDiv=document.getElementById('server_text_del_div');
       }
       opInput.value='';
       delDiv.style.opacity=0;
@@ -156,6 +181,7 @@ export default {
     font-size: 18px;
     color: #FFFFFF;
     background-color: rgba(54,185,145,1);
+
 }
 .login_setting{
   width:100%;
@@ -171,7 +197,7 @@ a{
 }
 
 .del_text_div{
-  opacity:0;
+  opacity:1;
   display:block;
   z-index: 1;
   position: absolute;
@@ -180,4 +206,34 @@ a{
   margin-left: 360px;
   margin-top: -40px;
 }
+.set_div{
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+  opacity: 0.8;
+  background: #000000;
+  margin: auto;
+}
+.set_center_div{
+  opacity: 0.94;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(203,203,203,0.50);
+  border-radius: 10px;
+  width: 445px;
+  height: 260px;
+
+  position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+}
+.set_title{
+  font-size: 18px;
+  color: #333333;
+  letter-spacing: 0;
+  line-height: 40px;
+  width: 250px;
+  height: 40px;
+  margin: 24px auto;
+}
+
 </style>

@@ -193,9 +193,9 @@ export default {
       {
         if(this.newPwd!="")
         {
-          console.log(this.newPwd);
+          console.log("重置密码，新密码是："+this.newPwd);
         }else {
-          console.log("顶顶顶顶顶顶顶顶顶顶顶");
+          console.log("密码设置错误。");
         }
       },
       // 获取验证码
@@ -234,6 +234,8 @@ export default {
       deNextSetp()
       {
         this.curSetp=2;
+        var img=document.getElementById("step_img");
+        img.src="static/img/assets/login/step_2.png";
       }
     },
     mounted(){
