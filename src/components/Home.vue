@@ -6,6 +6,8 @@
  		<router-link :to="{ path: 'myclass' }">班级</router-link>
  		<router-link :to="{ path: 'class_schedule' }">课表</router-link>
  		<router-link :to="{ path: 'mynote' }">笔记</router-link>
+    <router-link :to="{ path: 'Login' }">登录</router-link>
+    <router-link :to="{ path: 'login/reset_passwd' }">找回密码</router-link>
  	</div>
 </template>
 
