@@ -75,7 +75,8 @@
             <div class="grid-content">
               <p>
                 <span class="item-bottom-label item-a-submit">
-                 <a class="item-bottom-link">5</a>人已提交
+                  <router-link :to="{path: 'workprocess'}" class="item-bottom-link">5</router-link>人已提交
+                 <!-- <a class="item-bottom-link">5</a>人已提交 -->
                 </span>
                 <span class="item-bottom-label item-a-unfinished">
                  <a class="item-bottom-link">15</a>人进行中
@@ -100,6 +101,7 @@
 
 <script>
 import Scroller from "vue-scroller/src/components/Scroller.vue"
+
 export default {
   components: {
       Scroller

@@ -35,6 +35,17 @@ export default new Router({
       name: 'HomeWorkList',
       component: resolve => require(['components/HomeWork/HomeWorkList.vue'], resolve),
     },
+    //作业题
+    {
+      path: '/homework/:id',
+      name: 'HomeworkDetail',
+      component: resolve => require(['components/HomeWork/ItemStartAnswer.vue'], resolve),
+    },
+    {
+      path: '/homework/:id/workprogress',
+      name: 'HomeWorkList',
+      component: resolve => require(['components/HomeWork/ItemStudentAnalytics.vue'], resolve),
+    },
     {
       path: '/msg',
       name: 'MsgList',
