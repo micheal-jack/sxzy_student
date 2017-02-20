@@ -102,14 +102,14 @@ export default new Router({
       children: [
       		{
 	          path: '',
+	          name:'CourseDetailCatelogDefault',
+	          component: CourseDetailCatelog,
+	        },
+	        {
+	          path: 'catelog',
 	          name:'CourseDetailCatelog',
 	          component: CourseDetailCatelog,
 	        },
-	        // {
-	        //   path: 'catelog',
-	        //   name:'CourseDetailCatelog',
-	        //   component: CourseDetailCatelog,
-	        // },
 	        {
 	          path: 'note',
 	          name:'CourseDetailNote',
