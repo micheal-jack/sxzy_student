@@ -52,7 +52,7 @@
   }
 
   .nav-right {
-    width: 60px;
+    /*width: 60px;*/
     margin: 20px 20px 10px 20px;
   }
 

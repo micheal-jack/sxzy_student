@@ -14,6 +14,7 @@ export default {
 <style>
   html {
     font-family: Microsoft YaHei;
+    font-size: 10px;
   }
 
   html,body,div {
