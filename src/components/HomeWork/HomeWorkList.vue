@@ -48,8 +48,10 @@
     <div class="homework-list">
 
     <scroller style="position:relative;" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">
-      <div class="homework-list-item" v-for="item in homework_list">
-        <el-row :gutter="20">
+    <el-row :gutter="20">
+      <el-col  :span="12" v-for="item in homework_list">
+      <div class="homework-list-item">
+        <el-row>
           <el-col :span="16">
             <div class="grid-content">
               <p class="item-title">三年级语文（上）</p>
@@ -88,9 +90,11 @@
             <div class="grid-content">
               <p class="item-state-label">待审阅</p>
             </div>
-          </el-col>
+        </el-col>
         </el-row>
-      </div><!--end of list item-->
+        </div>
+      </el-col><!--end of list item-->
+      </el-row>
       </scroller>
 
     </div>
@@ -203,7 +207,7 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 
 .menu-button{
   margin: 10px 10px;
@@ -254,7 +258,7 @@ export default {
   background: #FFFFFF;
   box-shadow: 0 1px 1px 0 rgba(213,213,213,0.50);
   border-radius: 100px;
-  width: 23.33rem;
+  /*width: 23.33rem;*/
   height: 4.17rem;
   display: table;
   margin: 0 auto;
@@ -307,15 +311,12 @@ export default {
 }
 
 .homework-list-item {
-  display: inline-block;
-  margin: 0.85rem 0.8rem;
-  width: 39.17rem;
+  margin-bottom: 2.5rem;
   height: 18.33rem;
   opacity: 0.85;
   background: #FFFFFF;
   box-shadow: 0 1px 1px 0 rgba(212,212,212,0.50);
   border-radius: 1rem;
-  max-width: 46%;
 }
 
 .homework-list-item > .el-row {
