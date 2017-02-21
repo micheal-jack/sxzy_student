@@ -5,6 +5,13 @@
                 <i class="el-icon-menu large"></i>
             </a>
         </cui-navbar>
+        <div class="select">
+            <i class="icon-top"></i>
+            <a href="javascript:;">全部课程</a>
+            <a href="javascript:;">语文</a>
+            <a href="javascript:;">数学</a>
+            <a href="javascript:;">英语</a>
+        </div>
         <scroller style="top:90px;" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">
             <el-select v-model="value" placeholder="请选择" class="term-list">
                 <el-option v-for="item in options" :label="item.label" :value="item.value">
@@ -114,19 +121,19 @@ export default {
             course_list: [],
             options: [{
                 value: '选项1',
-                label: '黄金糕'
+                label: '2017年上'
             }, {
                 value: '选项2',
-                label: '双皮奶'
+                label: '2016年下'
             }, {
                 value: '选项3',
-                label: '蚵仔煎'
+                label: '2016年上'
             }, {
                 value: '选项4',
-                label: '龙须面'
+                label: '2015年下'
             }, {
                 value: '选项5',
-                label: '北京烤鸭'
+                label: '2015年上'
             }],
             value: ''
         }
@@ -142,6 +149,35 @@ export default {
 }
 </style>
 <style scoped>
+.select {
+    width: 138px;
+    height: 227px;
+    position: fixed;
+    top: 90px;
+    right: 24px;
+    background: #49484A;
+    z-index: 1002;
+}
+
+.select a {
+    display: block;
+    width: 109px;
+    height: 54px;
+    margin: 0 auto;
+    font-size: 18px;
+    color: #fff;
+    line-height: 54px;
+    text-align: center;
+    text-decoration: none;
+}
+.select .icon-top {
+    width: 11px;
+    height: 9px;
+    background: url(/static/img/assets/course/icon-top.png);
+    position: absolute;
+    top: -9px;
+    right: 20px;
+}
 .el-col {
     padding: 10px 10px;
 }
@@ -150,7 +186,6 @@ export default {
     margin: 0 0;
     overflow: hidden;
     min-height: 100%;
-    /*background-color: #333;*/
 }
 
 .menu-button {
@@ -216,14 +251,12 @@ export default {
 
 .content div.item {
     display: inline-block;
-    /*width: 470px;*/
     height: 258px;
     opacity: 0.95;
     background: #ffffff;
     box-shadow: 0 1px 1px 0 rgba(212, 212, 212, 0.50);
     border-radius: 12px;
     text-align: center;
-    /*margin: 15px 15px 15px 0;*/
 }
 
 .content div.item > div.item-top {
@@ -262,8 +295,8 @@ export default {
 
 
 /**
-	 * content > top > content-group
-	 */
+     * content > top > content-group
+     */
 
 .item div.item-top > div.content-group {
     text-align: left;
@@ -302,8 +335,8 @@ export default {
 
 
 /**
-	 * bottom
-	 */
+     * bottom
+     */
 
 .content div.item > div.item-bottom {
     height: 68px;
