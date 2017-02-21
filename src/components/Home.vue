@@ -18,22 +18,38 @@
       </div>
     </div>
   </div>
-  <div class="body-div">
-    <div class="body-student bg-div">
-      签到
-    </div>
-
-    <div class="body-group-div">
-      <div class="body-course bg-div">课程</div>
-      <div class="body-homework bg-div">作业</div>
-      <div class="body-others bg-div">
-        <div class="body-item">1</div>
-        <div class="body-item">2</div>
-        <div class="body-item">3</div>
-        <div class="body-item">4</div>
-        <div class="body-item">5</div>
-        <div class="body-item">6</div>
+  <div :style=this.bodyStyleStr  ref="body_div" id="bodyddd">
+    <div :style=this.bodyCenterStr class="bg-div">
+      <div >
+        <img src="static/img/assets/home/avatar.png" ref="studentImg"/>
       </div>
+        <div >
+          <div>张同学</div>
+          <div>上地实验中学 三年二班</div>
+          <div>已连续签到20天</div>
+        </div>
+        <div >
+            <div class="date-text" ref="date">2017年2月21日</div>
+            <div><el-button class="btn" ref="btn">签到</el-button></div>
+        </div>
+    </div>
+    <div :style=this.infoStyleStr>
+      <el-row>
+          <el-col :span="2"  ></el-col>
+          <el-col :span="20" :style=this.infoStyleStr >
+            <el-row gutter="20">
+                <el-col :style="this.smallItemStylStr" class="bg-div"></el-col>
+                <el-col :style="this.smallItemStylStr" class="bg-div"></el-col>
+                <el-col >
+                  <div>
+
+                </div>
+                </el-col>
+
+            </el-row>
+          </el-col>
+          <el-col :span="2" ></el-col>
+      </el-row>
     </div>
   </div>
   <div class="foot-div">
@@ -54,20 +70,56 @@ export default {
   name: 'home',
   data () {
     return {
+      bodyStyleStr:'',
+      bodyCenterStr:'',
+      studentStyleStr:'',
+      infoStyleStr:'',
+      stuInfoStyleStr:'',
+      bigItemStylStr:'',
+      smallItemStylStr:'',
+      itemWidth:'',
+      bodyHeight:0,
+      bodyWidth:0
     }
   },
   methods:{
-    setLoginMsg(num){
+    setLogoMsg(num){
       if(num>0)
       {
         this.$refs.logoMessage.src="static/img/assets/home/message_alert.png";
       }else {
         this.$refs.logoMessage.src="static/img/assets/home/message.png";
       }
+    },
+    resetBody()
+    {
+      this.bodyHeight=document.body.clientHeight-85-150-15-15;
+      this.bodyWidth=document.body.clientWidth;
+      this.bodyStyleStr="margin:15px auto;width:"+this.bodyWidth+"px;height:"+this.bodyHeight+"px;background-color: #00ff00;";
+      console.log("计算后的高度："+this.bodyHeight+"|"+this.bodyStyleStr)
+
+      this.bodyCenterStr="margin:auto;width:"+(this.bodyWidth-60)+"px;";
+      var stuH=Math.floor((this.bodyHeight-50)/3);
+      this.studentStyleStr=this.bodyCenterStr+"height:"+stuH+"px;"
+      console.log("计算后的宽度："+this.bodyWidth+"|"+this.studentStyleStr)
+
+      this.itemWidth=Math.floor((this.bodyWidth-260)/5);
+      this.infoStyleStr=this.bodyCenterStr+"height:"+(stuH*2)+"px;margin-top:20px;"
+      this.stuInfoStyleStr="width:"+(this.bodyWidth-465-60)+"px;height:"+stuH+"px;"
+      console.log(this.stuInfoStyleStr);
+      this.bigItemStylStr="width:"+this.itemWidth+"px;height:"+(stuH*2)+"px;"
+      this.smallItemStylStr="width:"+this.itemWidth+"px;height:"+(stuH)+"px;"
     }
   },
   mounted(){
     this.$refs.logoMessage.src="static/img/assets/home/message_alert.png";
+
+    this.resetBody();
+    window.onresize = () => {
+                return (() => {
+                    this.resetBody();
+                })()
+            }
   }
 }
 </script>
@@ -91,23 +143,14 @@ export default {
   width: 100%;
   height: 84px;
   background-color: #FFFFFF;
-  position: absolute;
   top:0px;
 }
-.body-div
-{
 
-padding: 100px 32px 150px 32px;
-  background-color: #FF00FF;
-}
 .foot-div
 {
   width: 100%;
   height: 150px;
-  background-color: #FF0000;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
+  background-color: #00ffFF;
 }
 .device-div
 {
@@ -153,39 +196,21 @@ padding: 100px 32px 150px 32px;
   position: absolute;
   cursor: pointer;
 }
-
-.body-student
-{
-  height: 21%;
-  margin-top: 15px;
+.date-text{
+  font-size: 24px;
+color: #666666;
+letter-spacing: 0;
 }
-.body-group-div
-{
-   padding-top: 32px;
-   margin: 0;
+.btn{
+  width: 200px;
+  height: 52px;
+  background: #36B991;
+  border-radius: 100px;
+  font-size: 24px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  line-height: 30px;
 }
-.body-course
-{
-  display:inline-block;
-  width: 18%;
-  height: 100%;
-  margin: 0;
-
-}
-.body-homework
-{
-  display:inline-block;
-  width: 18%;
 
 
-}
-.body-others
-{
-  width: 50%;
-  display:inline-block;
-  margin-right: 0;
-  padding-right: 0;
-
-
-}
 </style>
