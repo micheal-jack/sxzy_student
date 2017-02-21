@@ -53,16 +53,14 @@
 export default {
     data() {
       return {
-
         pwdLengthMin:3,// 登录密码最小长度
         pwdLengthMax:20,// 登录密码最大长度
         phoneNumLength:4,// 电话号码长度
         checkNumLength:4,// 验证码长度
         getCheckNumGap:10,//获取验证码的间隔，单位：秒
         newPwd:'',// 重置的密码
-      	title:'找回密码',
-        curSetp:1,
-        active: 0
+        curSetp:1,// 当前的步骤进度
+      	title:'找回密码'
       };
     },
     methods: {
