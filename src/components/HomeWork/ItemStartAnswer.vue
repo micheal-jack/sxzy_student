@@ -45,9 +45,21 @@
       </el-col>
     </el-row>
 
-    <div class="bottom-container">
+    <div class="bottom-container" v-show="isEnd">
       <p class="bottom-content">本作业共 <span class="test-count">10</span> 道题目，已经完成 <span class="test-count">8</span> 道，还有 <span class="test-count">2</span> 道题未作答。</p>
       <p class="bottom-content"> 点击答题卡<img src="static/img/assets/homework/abcd.png" />，查看题目完成情况。</p>
+      <el-button class="btn-default">确认提交</el-button>
+    </div>
+
+    <div class="bottom-container" v-show="isStart">
+      <p class="bottom-content teacher-comment">教师评语：完成的不错，继续加油！</p>
+      <el-button class="btn-default">开始答题</el-button>
+    </div>
+
+    <div class="bottom-container" v-show="isPause">
+      <br /> <br /> <br /> <br />
+      <el-button class="btn-default">开始答题</el-button>
+      <el-button class="btn-default">重新答题</el-button>
     </div>
 
   </div>
@@ -58,7 +70,10 @@
 export default {
   data () {
     return {
-    	title:'答题'
+    	title:'答题',
+      isStart: false,
+      isPause: true,
+      isEnd: false
     }
   },
   methods: {
@@ -168,6 +183,7 @@ p.exam-desc {
   width: 100%;
   height: 50%;
   margin-top: 110px;
+  text-align: center;
 }
 
 .bottom-content {
@@ -178,6 +194,20 @@ p.exam-desc {
   line-height: 42px;
 }
 
+.teacher-comment {
+  font-size: 20px;
+  color: #FF5A5F;
+  letter-spacing: 0;
+}
+
+.btn-default {
+  background: #36B991;
+  border-radius: 100px;
+  font-size: 20px;
+  color: #FFFFFF;
+  width: 302px;
+  height: 64px;
+}
 
 .test-count {
   font-size: 20px;

@@ -43,8 +43,13 @@ export default new Router({
     },
     {
       path: '/homework/:id/workprogress',
-      name: 'HomeWorkList',
+      name: 'WorkProgress',
       component: resolve => require(['components/HomeWork/ItemStudentAnalytics.vue'], resolve),
+    },
+    {
+      path: '/homework/:id/answersheet',
+      name: 'AnswerSheet',
+      component: resolve => require(['components/HomeWork/ItemAnswerSheet.vue'], resolve),
     },
     {
       path: '/msg',
