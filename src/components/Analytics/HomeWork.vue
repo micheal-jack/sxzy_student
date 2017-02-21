@@ -1,19 +1,13 @@
 <template>
-    <div class="quality">
+    <div class="homework">
         <cui-navbar v-on:back="back" :title="title">
         </cui-navbar>
-        <el-tabs type="border-card">
-            <el-tab-pane label="作业" id="main-container">
-                <div id="main"></div>
-                <div id="line"></div>
-            </el-tab-pane>
-            <el-tab-pane label="练习">
-            </el-tab-pane>
-        </el-tabs>
+        <div id="main"></div>
+        <div id="line"></div>
     </div>
 </template>
 <script>
-import echarts from '../../lib/echarts.js'
+import echarts from '../../lib/echarts.min.js'
 
 export default {
     mounted() {
@@ -146,43 +140,11 @@ export default {
         }
 }
 </script>
-<style>
-.quality .el-tabs__header {
-    width: 292px;
-    height: 50px;
-    margin: 0 auto 20px;
-    border-radius: 25px;
-    overflow: hidden;
-}
-
-.quality .el-tabs--border-card>.el-tabs__header>.el-tabs__item {
-    border: none;
-    width: 148px;
-    height: 100%;
-    line-height: 50px;
-    text-align: center;
-    font-size: 16px;
-    color: #666;
-    border: none;
-    border-radius: 25px;
-}
-
-.quality .el-tabs--border-card>.el-tabs__header>.el-tabs__item.is-active {
-    background: #36b991;
-    color: #fff;
-}
-</style>
 <style scoped>
-.quality {
+.homework {
     height: 100%;
     padding-top: 90px;
     background: #fff;
-}
-
-.el-tabs--border-card {
-    background: none;
-    border: none;
-    box-shadow: none;
 }
 
 #main,

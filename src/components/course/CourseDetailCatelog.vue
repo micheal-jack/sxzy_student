@@ -1,8 +1,10 @@
 <template>
     <div class="catalog">
         <el-tree :data="data" :props="defaultProps" accordion @node-click="handleNodeClick"></el-tree>
-        <div class="masker"></div>
-        <div class="popup">
+        <!-- 还未完成作业的弹窗和遮罩层 -->
+        <div class="masker" style="display:none;"></div>
+
+        <div class="popup" style="display:none;">
             <i class="icon-close"></i>
             <img src="static/img/assets/course/popup.png" alt="">
             <p class="info">还未完成作业</p>
@@ -85,7 +87,6 @@ export default {
     position: fixed;
     top: 0;
     left: 0;
-    display: none;
 }
 
 
@@ -102,7 +103,6 @@ export default {
     left: 50%;
     margin-top: -160px;
     margin-left: -162px;
-    display: none;
 }
 .popup .icon-close {
     width: 32px;

@@ -5,7 +5,7 @@
                 <i class="el-icon-menu large"></i>
             </a>
         </cui-navbar>
-        <div class="select">
+        <div class="select" v-show="a">
             <i class="icon-top"></i>
             <a href="javascript:;">全部课程</a>
             <a href="javascript:;">语文</a>
@@ -105,6 +105,11 @@ export default {
         },
         showCategoryList: function(evt) {
             console.log("show category list");
+            if (this.a) {
+                this.a = false;
+            } else {
+                this.a = true;
+            }
         }
     },
     data() {
@@ -127,7 +132,8 @@ export default {
                 value: '选项5',
                 label: '2015年上'
             }],
-            value: ''
+            value: '',
+            a: false
         }
     }
 }
@@ -162,6 +168,7 @@ export default {
     text-align: center;
     text-decoration: none;
 }
+
 .select .icon-top {
     width: 11px;
     height: 9px;
@@ -170,6 +177,7 @@ export default {
     top: -9px;
     right: 20px;
 }
+
 .el-col {
     padding: 10px 10px;
 }

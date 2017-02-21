@@ -1,13 +1,13 @@
 <template>
     <div class="mythread">
         <cui-navbar v-on:back="back" :title="title">
-            <!-- <a v-on:click="" class="search-btn">
-                <i class="el-icon-search"></i>
-            </a> -->
             <a v-on:click="showCategoryList" class="menu-button" slot="right">
                 <i class="el-icon-menu large"></i>
             </a>
         </cui-navbar>
+        <a v-on:click="" class="search-btn">
+            <i class="el-icon-search"></i>
+        </a>
         <scroller style="top:100px;" :on-refresh="refresh" :on-infinite="infinite" ref="my_scroller">
             <div class="container">
                 <el-select v-model="value" placeholder="请选择" class="term-list">
@@ -36,18 +36,59 @@
                                                 </div>
                                                 <p class="answer-content">重点词汇是大海、故乡、希望</p>
                                             </div>
+                                            <div class="answer-list">
+                                                <div>
+                                                    <img class="answerer" src="static/img/avatar-finn.png" alt="">
+                                                    <span class="answerer-name">张同学</span>
+                                                    <span class="answer-time"><i class="el-icon-time"></i>2016-7-7  12:30</span>
+                                                </div>
+                                                <p class="answer-content">重点词汇是大海、故乡、希望</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </el-col>
                         </el-row>
                     </el-tab-pane>
-                    <el-tab-pane label="最新回答">最新回答</el-tab-pane>
+                    <el-tab-pane label="最新回答">
+                        <el-row class="content">
+                            <el-col :span="20" v-for="item in course_list">
+                                <div class="item">
+                                    <div class="item-left">
+                                        <img class="avatar" src="static/img/avatar-finn.png" alt="">
+                                        <p class="name">李同学</p>
+                                    </div>
+                                    <div class="item-right">
+                                        <p class="chapter">六年级英语（上）hello world<span><i class="el-icon-time"></i>2016-7-7  12:30</span></p>
+                                        <p class="question">这课的重点是什么？重点词汇需要掌握哪些不清楚哪些不清楚哪些不清楚哪些不清楚</p>
+                                        <div class="answer">
+                                            <p class="answer-top"><span>全部回答（64）</span><a class="to-answer" href="javascript:;">我要回答</a></p>
+                                            <div class="answer-list">
+                                                <div>
+                                                    <img class="answerer" src="static/img/avatar-finn.png" alt="">
+                                                    <span class="answerer-name">张同学</span>
+                                                    <span class="answer-time"><i class="el-icon-time"></i>2016-7-7  12:30</span>
+                                                </div>
+                                                <p class="answer-content">重点词汇是大海、故乡、希望</p>
+                                            </div>
+                                            <div class="answer-list">
+                                                <div>
+                                                    <img class="answerer" src="static/img/avatar-finn.png" alt="">
+                                                    <span class="answerer-name">张同学</span>
+                                                    <span class="answer-time"><i class="el-icon-time"></i>2016-7-7  12:30</span>
+                                                </div>
+                                                <p class="answer-content">重点词汇是大海、故乡、希望</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </el-tab-pane>
                 </el-tabs>
             </div>
         </scroller>
         <a class="quiz" href="javascript:;">
-        	
         </a>
     </div>
 </template>
@@ -117,19 +158,19 @@ export default {
             course_list: [],
             options: [{
                 value: '选项1',
-                label: '黄金糕'
+                label: '2017年上'
             }, {
                 value: '选项2',
-                label: '双皮奶'
+                label: '2016年下'
             }, {
                 value: '选项3',
-                label: '蚵仔煎'
+                label: '2016年上'
             }, {
                 value: '选项4',
-                label: '龙须面'
+                label: '2015年下'
             }, {
                 value: '选项5',
-                label: '北京烤鸭'
+                label: '2015年上'
             }],
             value: ''
         }
@@ -140,16 +181,18 @@ export default {
 .mythread p {
     margin: 0;
 }
+
 .mythread .quiz {
-	width: 58px;
-	height: 58px;
-	display: block;
-	background: url(/static/img/assets/mythread/quiz.png);
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	background-size: 100%;
+    width: 58px;
+    height: 58px;
+    display: block;
+    background: url(/static/img/assets/mythread/quiz.png);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-size: 100%;
 }
+
 .mythread nav .title {
     margin-top: 24px;
 }
@@ -185,23 +228,24 @@ export default {
 }
 </style>
 <style scoped>
-
-
 .search-btn {
     width: 42px;
     height: 42px;
     border-radius: 50%;
     border: 1px solid #9B9B9B;
+    color: #9B9B9B;
     display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: fixed;
+    top: 15px;
+    right: 74px;
+    z-index: 1000;
 }
 
 .search-btn i {
     font-size: 30px;
-    text-align: center;
     line-height: 42px;
+    display: block;
+    text-align: center;
 }
 
 .menu-button {
@@ -213,16 +257,16 @@ export default {
     border: none;
     box-shadow: none;
 }
+
 .container {
-	position: relative;
+    position: relative;
 }
+
 .el-select {
-	position: absolute;
-	top: 7px;
-	right: 32px;
+    position: absolute;
+    top: 7px;
+    right: 32px;
 }
-
-
 
 .el-col {
     width: 100%;
@@ -327,6 +371,7 @@ export default {
     width: 100%;
     background: #fff;
     height: 120px;
+    margin-bottom: 10px;
     padding-left: 2.6%;
     box-sizing: border-box;
 }
