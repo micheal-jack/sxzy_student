@@ -55,6 +55,14 @@ export default {
         Scroller
     },
     mounted() {
+        this.$http.get('http://localhost:8992/api/user').then(function (response) {
+            //JSON 返回
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
         for (var i = 1; i <= 6; i++) {
             this.course_list.push({
                 course_id: i,
