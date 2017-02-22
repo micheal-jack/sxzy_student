@@ -94,6 +94,12 @@ export default new Router({
             name: 'AnswerSheet',
             component: resolve => require(['components/HomeWork/ItemAnswerSheet.vue'], resolve),
         },
+        // 我的作业-问题页详情
+        {
+            path: '/homework/:id/question/:ques_id',
+            name: 'QuestionPage',
+            component: resolve => require(['components/HomeWork/ItemDetail.vue'], resolve),
+        },
         // 我的作业-同学交作业情况
         {
             path: '/homework/:id/workprogress',
