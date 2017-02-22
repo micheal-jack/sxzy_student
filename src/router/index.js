@@ -104,7 +104,13 @@ export default new Router({
         // 查看待批阅作业=====================
         // 提交作业后的答题卡=====================
         // 其他学期作业=====================
-        // 搜索作业=====================
+        //作业完成质量统计
+        {
+            path: '/homework/:id/result',
+            name: 'WorkResult',
+            component: resolve => require(['components/HomeWork/StudentResult.vue'], resolve),
+        },
+
         // 学习质量分析-作业
         {
             path: '/analytics/work',

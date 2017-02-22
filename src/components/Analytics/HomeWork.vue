@@ -143,7 +143,7 @@ export default {
 <style scoped>
 .homework {
     height: 100%;
-    padding-top: 90px;
+    padding-top: 110px;
     background: #fff;
 }
 
@@ -152,6 +152,7 @@ export default {
     height: 300px;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.10);
     border-radius: 4px;
+    margin: 0 auto;
 }
 
 #main {
