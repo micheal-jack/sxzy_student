@@ -10,8 +10,9 @@ import CustomUI from './custom-ui/index'
 
 import router from './router'
 
+import axios from 'axios'
 
-
+Vue.prototype.$http = axios
 
 Vue.use(ElementUI)
 Vue.use(CustomUI)
